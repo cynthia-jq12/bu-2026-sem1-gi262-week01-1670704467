@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Assignment : MonoBehaviour
 {
@@ -146,22 +146,35 @@ public class Assignment : MonoBehaviour
     {
         if (as08Quantity <= 0) 
         {
-            Debug.Log("out"); return; 
+            Debug.Log("sold out"); return; 
         }
         if (as08Payment < as08Price) 
-        { Debug.Log("not enih"); return;
+        { Debug.Log("not enogh money"); return;
         }
 
-        Debug.Log("???????????????????");
+        Debug.Log("คุณได้รับสินค้าแล้ว");
         if (as08Payment > as08Price)
-            Debug.Log($"???????????????? {as08Payment - as08Price} ???");
+            Debug.Log($"You received your chang {as08Payment - as08Price} Bath");
     }
 
     public int as09UserChoice;
     public int as09ComputerChoice;
     public void As09_RockPaperScissorsExample()
     {
-        throw new System.NotImplementedException();
+        if (as09UserChoice < 0 || as09UserChoice > 2) 
+        { 
+            Debug.Log("Selcet the right number"); return; 
+        }
+        if (as09UserChoice == as09ComputerChoice) 
+        {
+            Debug.Log("เสมอ"); return; 
+        }
+
+        bool win = (as09UserChoice == 0 && as09ComputerChoice == 2) ||
+                   (as09UserChoice == 1 && as09ComputerChoice == 0) ||
+                   (as09UserChoice == 2 && as09ComputerChoice == 1);
+
+        Debug.Log(win ? "You won!" : "You lose!");
     }
 
     public string as10WeaponType;
