@@ -14,7 +14,7 @@ public class Assignment : MonoBehaviour
         // As07_GetSeason();
         // As08_PurchasingSystemExample();
         // As09_RockPaperScissorsExample();
-        // As10_CalculateWeaponDamage();
+         As10_CalculateWeaponDamage();
         // As11_DeterminePlayerRank();
     }
 
@@ -183,7 +183,18 @@ public class Assignment : MonoBehaviour
     {
         // TODO: Add your implementation here
         // Example: Debug.Log("result as string");
-        throw new System.NotImplementedException();
+
+        double multiplier = as10WeaponType?.ToLower() switch
+        {
+            "sword" => 1.3,
+            "axe" => 1.4,
+            "bow" => 1.2,
+            "staff" => 1.5,
+            "dagger" => 1.1,
+            _ => 1.0
+        };
+
+        Debug.Log(((int)(as10BaseDamage * multiplier)).ToString());
     }
 
     public int as11Score;
@@ -192,6 +203,19 @@ public class Assignment : MonoBehaviour
     {
         // TODO: Add your implementation here
         // Example: Debug.Log("result as string");
-        throw new System.NotImplementedException();
+
+        if (as11Score < 0 || as11CompletionTime < 0) { Debug.Log("Invalid score or time"); return; }
+
+        int baseCoins = 25;
+        string rank = "Participation";
+
+        if (as11Score >= 8000) { rank = "Gold"; baseCoins = 100; }
+        else if (as11Score >= 6000) { rank = "Silver"; baseCoins = 75; }
+        else if (as11Score >= 4000) { rank = "Bronze"; baseCoins = 50; }
+
+        int timeBonus = as11CompletionTime <= 30 ? 25 : (as11CompletionTime <= 60 ? 10 : 0);
+
+        Debug.Log($"{rank} Rank\n{baseCoins + timeBonus} coins earned!");
     }
 }
+
